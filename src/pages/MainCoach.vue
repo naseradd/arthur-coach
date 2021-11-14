@@ -21,11 +21,11 @@
       />
       <div class="container">
         <h2 class="title">{{mainTitle}}</h2>
-      <h4 class="description">
+      <h4 class="">
               {{mainDescription}}
             </h4></div>
     </div>
-    <div class="section section-about-us">
+    <div v-if="showTemplate" class="section section-about-us">
       <div class="container">
         <div  class="separator separator-primary"></div>
         <div  v-if="showTemplate" class="section-story-overview">
@@ -92,14 +92,45 @@
         </div>
       </div>
     </div>
-    
+    <div class="container">
+      <h2 class="title">{{temoign_Title}}</h2>
+      <div class="container-people-card">
+        <people-card
+        :name="temoignNameList[0]"
+        :img="temoignImgList[0]"
+        :description="temoignTextList[0]"
+        />
+        <people-card
+        :name="temoignNameList[1]"
+        :img="temoignImgList[1]"
+        :description="temoignTextList[1]"/>
+      </div>
+    </div>
+    <div class="container">
+      <h2 class="title">{{plan_training}}</h2>
+      <div class="container-people-card">
+        <data-card/>
+        <data-card/>
+        <data-card/>
+        <data-card/>
+      </div>
+    </div>
+    <div class="container">
+      <h2 class="title">{{plan_massage}}</h2>
+      <div class="container-people-card">
+        <data-card/>
+        <data-card/>
+        <data-card/>
+        <data-card/>
+      </div>
+    </div>
     <div class="section section-contact-us text-center">
       <div class="container">
-        <h2 class="title">Want to work with us?</h2>
-        <p class="description">Your project is very important to us.</p>
+        <h2 class="title">{{questionsAndInterest}}</h2>
         <div class="row">
           <div class="col-lg-6 text-center ml-auto mr-auto col-md-8">
             <fg-input
+              v-if="showTemplate"
               class="input-lg"
               placeholder="First Name..."
               v-model="form.firstName"
@@ -107,13 +138,14 @@
             >
             </fg-input>
             <fg-input
+              v-if="showTemplate"
               class="input-lg"
               placeholder="Email Here..."
               v-model="form.email"
               addon-left-icon="now-ui-icons ui-1_email-85"
             >
             </fg-input>
-            <div class="textarea-container">
+            <div class="textarea-container" v-if="showTemplate">
               <textarea
                 class="form-control"
                 name="name"
@@ -125,7 +157,7 @@
             </div>
             <div class="send-button">
               <n-button type="primary" round block size="lg"
-                >Send Message</n-button
+                >{{rendezVous}}</n-button
               >
             </div>
           </div>
@@ -136,12 +168,16 @@
 </template>
 <script>
 import { Button, FormGroupInput } from '@/components';
+import PeopleCard from './components/PeopleCard.vue'
+import DataCard from './components/DataCard.vue';
 export default {
   name: 'MainCoach',
   bodyClass: 'main-coach',
   components: {
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
+    [FormGroupInput.name]: FormGroupInput,
+    PeopleCard,
+    DataCard
   },
   data() {
     return {
@@ -154,10 +190,26 @@ export default {
       mainDescription:
       '" Je suis coach et massothérapeute à Montréal. Je travaille avec une grande variété des gens qui veulent devenir plus forts, plus athlétiques et plus sains. Pour chaque client, je crée un plan personnalisé avec soin et avec attention à la profile de la personne. "',
       temoign_Title: "Témoignages",
+      plan_training: "Plans entraînement",
+      plan_massage: "Plans massage",
+      rendezVous: "Prendre rendez vous",
+      questionsAndInterest: "Avez-vous des questions ? Voudriez-vous commencer tout de suite ?",
       showTemplate: false,
+      temoignTextList: [],
+      temoignImgList: [],
+      temoignNameList: [],
 
     };
-  }
+  },
+  beforeMount(){
+    this.temoignTextList.push("« Arthur est le meilleur coach. J'ai ajouté 25 livres de muscle cette année. »");
+    this.temoignImgList.push("img/ryan.jpg");
+    this.temoignNameList.push("Natan Weinberger, client de 1 ans.");
+
+    this.temoignTextList.push("« Il m'a beaucoup aidé ! »");
+    this.temoignImgList.push("img/julie.jpg");
+    this.temoignNameList.push("Carol Zhang, client de 1 ans.");
+  },
 };
 </script>
 <style>
@@ -170,6 +222,11 @@ export default {
 .profile img{
   width: 300px;
   margin: 100px;
+}
+.container-people-card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 </style>
