@@ -4,7 +4,7 @@ set -e
 
 git add -A
 git commit -m 'code push'
-git push -f git@github.com:naseradd/arthur-coach.git master:main
+git push -f git@github.com:naseradd/arthur-coach.git
 
 # build
 npm run build
