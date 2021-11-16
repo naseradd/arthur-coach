@@ -19,18 +19,27 @@ export default {
   components: { MainCoach, MainCoachNavBar, MainCoachFooter },
   data(){
     return{
-
+      i: 0,
       theme: "default",
       // theme: "primary",
     }
   },
   methods:{
     changeColor(){
-      if(this.theme == "default"){
-        this.theme = "primary";
+      this.i = this.i+1;
+      if( this.i > 2){
+        this.i = 0;
       }
-      else {
-        this.theme = "default";
+      switch(this.i){
+        case 0 :
+          this.theme = "primary";
+          break;
+        case 1 :
+          this.theme = "default";
+          break;
+        case 2 :
+          this.theme = "info";
+          break;
       }
     }
 
