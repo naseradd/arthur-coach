@@ -2,9 +2,12 @@
   <div class="peoplecard">
       <div class="section-story-overview">
         <div class="photo-container">
-        <img alt="Thumbnail Image" class="rounded-circle img-raised" :src="img" lazy="loaded"/>
+        <div
+          class="image-container rounded img-raised" lazy="loaded"
+          :style="img"
+        />
         </div>
-           <p class="blockquote blockquote-primary">
+           <p class="blockquote blockquote-default">
                   {{description}}
                   <br />
                   <br />
@@ -46,8 +49,7 @@ export default {
   position: inherit !important;
   width: 300px !important;
 }
-.img-raised{
-    width: 200px;
+.image-container{
     margin-bottom: 20px;
     display: block;
     margin-left: auto;

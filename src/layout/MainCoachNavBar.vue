@@ -1,7 +1,7 @@
 <template>
   <navbar
     position="fixed"
-    type="primary"
+    :type="theme"
     :transparent="transparent"
     :color-on-scroll="colorOnScroll"
     menu-classes="ml-auto"
@@ -80,7 +80,8 @@ export default {
   name: 'main-navbar',
   props: {
     transparent: Boolean,
-    colorOnScroll: Number
+    colorOnScroll: Number,
+    theme: String,
   },
   components: {
     Navbar,

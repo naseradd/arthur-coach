@@ -109,13 +109,28 @@
     <div class="container">
       <h2 class="title">{{plan_training}}</h2>
       <div class="container-people-card">
+        <data-card
+        :title="plan_training_dataInfo[0].title"
+        :bonus_description="plan_training_dataInfo[0].bonus_description"
+        :pro="plan_training_dataInfo[0].pro"
+        :bonus="plan_training_dataInfo[0].bonus"
+        :price="plan_training_dataInfo[0].price"
+        :unite="plan_training_dataInfo[0].unite"
+        />
+        <data-card
+        :title="plan_training_dataInfo[0].title"
+        :bonus_description="plan_training_dataInfo[0].bonus_description"
+        :pro="plan_training_dataInfo[0].pro"
+        :bonus="plan_training_dataInfo[0].bonus"
+        :price="plan_training_dataInfo[0].price"
+        :unite="plan_training_dataInfo[0].unite"
+        />
+        <!-- <data-card/>
         <data-card/>
-        <data-card/>
-        <data-card/>
-        <data-card/>
+        <data-card/> -->
       </div>
     </div>
-    <div class="container">
+    <!-- <div class="container">
       <h2 class="title">{{plan_massage}}</h2>
       <div class="container-people-card">
         <data-card/>
@@ -123,7 +138,7 @@
         <data-card/>
         <data-card/>
       </div>
-    </div>
+    </div> -->
     <div class="section section-contact-us text-center">
       <div class="container">
         <h2 class="title">{{questionsAndInterest}}</h2>
@@ -156,7 +171,7 @@
               ></textarea>
             </div>
             <div class="send-button">
-              <n-button type="primary" round block size="lg"
+              <n-button :type="theme" round block size="lg"
                 >{{rendezVous}}</n-button
               >
             </div>
@@ -179,6 +194,9 @@ export default {
     PeopleCard,
     DataCard
   },
+  props:{
+    theme: String,
+  },
   data() {
     return {
       form: {
@@ -198,17 +216,39 @@ export default {
       temoignTextList: [],
       temoignImgList: [],
       temoignNameList: [],
+      plan_training_dataInfo: [],
 
     };
   },
   beforeMount(){
+    //Nathan hardcode
     this.temoignTextList.push("« Arthur est le meilleur coach. J'ai ajouté 25 livres de muscle cette année. »");
-    this.temoignImgList.push("img/ryan.jpg");
+    this.temoignImgList.push("background-image: url('img/natan_temoign.jpg')");
     this.temoignNameList.push("Natan Weinberger, client de 1 ans.");
 
+    //Carole hardcode
     this.temoignTextList.push("« Il m'a beaucoup aidé ! »");
-    this.temoignImgList.push("img/julie.jpg");
+    this.temoignImgList.push("background-image: url('img/carol_temoign.jpg')");
     this.temoignNameList.push("Carol Zhang, client de 1 ans.");
+
+    this.generateFakeDataTraining();
+  },
+
+  methods:{
+
+    generateFakeDataTraining(){
+      let rowData = {
+        title:"Gym Arthur",
+        description:"",
+        description:"",
+        unite:"/séance",
+        price:"CAD $50",
+        bonus_description:"En plus, vous recevrez:",
+        pro:["Je vous entraîne chez vous","On utilise vos équipements et les miens"],
+        bonus:["Accès à vos données dans l'application Hexfit","Mesures du corps mensuels"]
+      }
+      this.plan_training_dataInfo.push(rowData);
+    }
   },
 };
 </script>
