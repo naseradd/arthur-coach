@@ -2,7 +2,6 @@
   <div class="peoplecard">
       <card style="width: 20rem;">
       <div>
-        <i class="now-ui-icons sport_trophy card-img-top large" style="font-size: 35px; text-align: center;" ></i>
         <h4 class="card-title text-center">{{title}}</h4>
         <h5 class="card-title text-center"><b>{{price}}</b>{{unite}}</h5>
         <hr style="height:2px; width:60%; border-width:0; color:red; background-color:black">

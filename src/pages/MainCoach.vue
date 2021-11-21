@@ -20,10 +20,11 @@
         class="rounded img-fluid img-raised"
       />
       <div class="container">
-        <h2 class="title">{{mainTitle}}</h2>
-      <h4 class="">
-              {{mainDescription}}
-            </h4></div>
+        <!-- <h2 class="title">{{mainTitle}}</h2> -->
+      <h5 class="">
+          {{mainDescription}}
+      </h5>
+      </div>
     </div>
     <div v-if="showTemplate" class="section section-about-us">
       <div class="container">
@@ -93,43 +94,92 @@
       </div>
     </div>
     <div class="container">
-      <h2 class="title">{{temoign_Title}}</h2>
-      <div class="container-people-card">
-        <people-card
-        :name="temoignNameList[0]"
-        :img="temoignImgList[0]"
-        :description="temoignTextList[0]"
-        />
-        <people-card
-        :name="temoignNameList[1]"
-        :img="temoignImgList[1]"
-        :description="temoignTextList[1]"/>
-      </div>
+      <tabs 
+        type="primary" 
+        tabContentClasses="tab-subcategories"
+        square centered class="row"
+      >
+        <tab-pane>
+        <span slot="label">
+          {{tab_title[0]}}
+        </span>
+          <div class="container">
+            <h2 class="title">{{temoign_Title}}</h2>
+            <div class="container-people-card">
+              <people-card
+              :name="temoignNameList[0]"
+              :img="temoignImgList[0]"
+              :description="temoignTextList[0]"
+              />
+              <people-card
+              :name="temoignNameList[1]"
+              :img="temoignImgList[1]"
+              :description="temoignTextList[1]"/>
+            </div>
+          </div>
+        </tab-pane>
+        <tab-pane>
+        <span slot="label">
+          {{tab_title[1]}}
+        </span>
+          <div class="container">
+            <h2 class="title">{{plan_training}}</h2>
+            <div class="container-people-card">
+              <data-card
+              :title="plan_training_dataInfo[0].title"
+              :bonus_description="plan_training_dataInfo[0].bonus_description"
+              :pro="plan_training_dataInfo[0].pro"
+              :bonus="plan_training_dataInfo[0].bonus"
+              :price="plan_training_dataInfo[0].price"
+              :unite="plan_training_dataInfo[0].unite"
+              />
+              <data-card
+              :title="plan_training_dataInfo[0].title"
+              :bonus_description="plan_training_dataInfo[0].bonus_description"
+              :pro="plan_training_dataInfo[0].pro"
+              :bonus="plan_training_dataInfo[0].bonus"
+              :price="plan_training_dataInfo[0].price"
+              :unite="plan_training_dataInfo[0].unite"
+              />
+              <!-- <data-card/>
+              <data-card/>
+              <data-card/> -->
+            </div>
+          </div>
+        </tab-pane>
+        <tab-pane>
+        <span slot="label">
+          {{tab_title[2]}}
+        </span>
+          <div class="container">
+            <h2 class="title">{{plan_training}}</h2>
+            <div class="container-people-card">
+              <data-card
+              :title="plan_training_dataInfo[0].title"
+              :bonus_description="plan_training_dataInfo[0].bonus_description"
+              :pro="plan_training_dataInfo[0].pro"
+              :bonus="plan_training_dataInfo[0].bonus"
+              :price="plan_training_dataInfo[0].price"
+              :unite="plan_training_dataInfo[0].unite"
+              />
+              <data-card
+              :title="plan_training_dataInfo[0].title"
+              :bonus_description="plan_training_dataInfo[0].bonus_description"
+              :pro="plan_training_dataInfo[0].pro"
+              :bonus="plan_training_dataInfo[0].bonus"
+              :price="plan_training_dataInfo[0].price"
+              :unite="plan_training_dataInfo[0].unite"
+              />
+              <!-- <data-card/>
+              <data-card/>
+              <data-card/> -->
+            </div>
+          </div>  
+        </tab-pane>
+      </tabs>
+      
     </div>
-    <div class="container">
-      <h2 class="title">{{plan_training}}</h2>
-      <div class="container-people-card">
-        <data-card
-        :title="plan_training_dataInfo[0].title"
-        :bonus_description="plan_training_dataInfo[0].bonus_description"
-        :pro="plan_training_dataInfo[0].pro"
-        :bonus="plan_training_dataInfo[0].bonus"
-        :price="plan_training_dataInfo[0].price"
-        :unite="plan_training_dataInfo[0].unite"
-        />
-        <data-card
-        :title="plan_training_dataInfo[0].title"
-        :bonus_description="plan_training_dataInfo[0].bonus_description"
-        :pro="plan_training_dataInfo[0].pro"
-        :bonus="plan_training_dataInfo[0].bonus"
-        :price="plan_training_dataInfo[0].price"
-        :unite="plan_training_dataInfo[0].unite"
-        />
-        <!-- <data-card/>
-        <data-card/>
-        <data-card/> -->
-      </div>
-    </div>
+    
     <!-- <div class="container">
       <h2 class="title">{{plan_massage}}</h2>
       <div class="container-people-card">
@@ -141,7 +191,7 @@
     </div> -->
     <div class="section section-contact-us text-center">
       <div class="container">
-        <h2 class="title">{{questionsAndInterest}}</h2>
+        <!-- <h2 class="title">{{questionsAndInterest}}</h2> -->
         <div class="row">
           <div class="col-lg-6 text-center ml-auto mr-auto col-md-8">
             <fg-input
@@ -185,6 +235,8 @@
 import { Button, FormGroupInput } from '@/components';
 import PeopleCard from './components/PeopleCard.vue'
 import DataCard from './components/DataCard.vue';
+import {Tabs, TabPane} from '@/components'
+
 export default {
   name: 'MainCoach',
   bodyClass: 'main-coach',
@@ -192,7 +244,9 @@ export default {
     [Button.name]: Button,
     [FormGroupInput.name]: FormGroupInput,
     PeopleCard,
-    DataCard
+    DataCard,
+    Tabs,
+    TabPane
   },
   props:{
     theme: String,
@@ -217,6 +271,9 @@ export default {
       temoignImgList: [],
       temoignNameList: [],
       plan_training_dataInfo: [],
+      tab_title: [],
+      tab_nav_link: [],
+      tab_panes: [],
 
     };
   },
@@ -231,11 +288,15 @@ export default {
     this.temoignImgList.push("background-image: url('img/carol_temoign.jpg')");
     this.temoignNameList.push("Carol Zhang, client de 1 ans.");
 
+    this.tab_title.push(this.temoign_Title);
+    this.tab_title.push(this.plan_training);
+    this.tab_title.push(this.plan_massage);
+  
+    
     this.generateFakeDataTraining();
   },
 
   methods:{
-
     generateFakeDataTraining(){
       let rowData = {
         title:"Gym Arthur",
@@ -255,9 +316,10 @@ export default {
 <style>
 .profile{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around
+  justify-content: space-around;
+  text-align: center;
 }
 .profile img{
   width: 300px;
@@ -269,4 +331,10 @@ export default {
   justify-content: space-around;
 }
 
+.nav-tabs{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
 </style>

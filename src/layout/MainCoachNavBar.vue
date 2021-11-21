@@ -7,7 +7,11 @@
     menu-classes="ml-auto"
   >
     <template>
-      <h6>{{headerName}}</h6>
+      <img
+        src="img/logo_ar.jpg"
+        alt="Thumbnail Image"
+        class="rounded-circle logo"
+      />
     </template>
     <template slot="navbar-menu">
       <li class="nav-item">
@@ -31,30 +35,6 @@
           target="_blank"
         >
           <p>{{header_tarification}}</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          rel="tooltip"
-          title="Follow me on Twitter"
-          data-placement="bottom"
-          target="_blank"
-        >
-          <i class="fab fa-twitter"></i>
-          <p class="d-lg-none d-xl-none">Twitter</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          rel="tooltip"
-          title="Like me on Facebook"
-          data-placement="bottom"
-          target="_blank"
-        >
-          <i class="fab fa-facebook-square"></i>
-          <p class="d-lg-none d-xl-none">Facebook</p>
         </a>
       </li>
       <li class="nav-item">
@@ -99,4 +79,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.logo{
+  width: 60px;
+}
+</style>

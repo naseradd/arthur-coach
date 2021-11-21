@@ -176,6 +176,7 @@ export default {
         this.findAndActivateTab(this.value);
       }
     });
+    this.deactivateTabs();
   },
   watch: {
     value(newVal) {
@@ -184,3 +185,5 @@ export default {
   }
 };
 </script>
+<style scoped>
+</style>

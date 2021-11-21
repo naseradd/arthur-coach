@@ -1,0 +1,15 @@
+
+Photo arthur en haut centré
+titre a retirer
+description centre en dessous
+
+Panel avec plusieurs tabs avec plusieurs menu : 
+
+chaque tab se display en dropdwon ( animation) vers le bas 
+
+Livre d'or ( carroussel revisité espace entre les images et fleches pour scroller horizontalement)
+Plan entrainement - backgorund muscu dynamique 
+Plan massage -  backgorund scene dynamique 
+
+
+bouton contact en dessous
