@@ -28,6 +28,7 @@
           role="tablist"
           aria-expanded="true"
           :key="tab.id"
+          @click="clickOnTab"
         >
           <a
             data-toggle="tab"
@@ -43,17 +44,17 @@
         </li>
       </ul>
     </div>
-    <div
-      class="tab-content"
-      :class="[
-        { 'tab-space': !vertical && !noContentSpace },
-        'text-left',
-        { 'col-md-8': vertical && !tabContentClasses },
-        tabContentClasses
-      ]"
-    >
-      <slot></slot>
-    </div>
+      <div
+        class="tab-content"
+        :class="[
+          { 'tab-space': !vertical && !noContentSpace },
+          'text-left',
+          { 'col-md-8': vertical && !tabContentClasses },
+          tabContentClasses
+          ]"
+      >
+        <slot></slot>
+      </div>
   </div>
 </template>
 
@@ -130,6 +131,14 @@ export default {
     }
   },
   methods: {
+    clickOnTab(){
+      this.tabs.forEach((tab, index) => {
+        console.log(tab.label);
+        if(tab.active){
+          this.$emit('clickOnTab', index);
+        }
+      });
+    },
     findAndActivateTab(label) {
       let tabToActivate = this.tabs.find(t => t.label === label);
       if (tabToActivate) {
@@ -176,7 +185,7 @@ export default {
         this.findAndActivateTab(this.value);
       }
     });
-    this.deactivateTabs();
+    //this.deactivateTabs();
   },
   watch: {
     value(newVal) {
@@ -186,4 +195,10 @@ export default {
 };
 </script>
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

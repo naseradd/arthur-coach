@@ -1,4 +1,5 @@
 <template>
+<transition name="fade">
   <div
     class="tab-pane"
     v-show="active"
@@ -8,6 +9,7 @@
   >
     <slot></slot>
   </div>
+</transition>
 </template>
 <script>
 export default {
@@ -35,4 +37,13 @@ export default {
 };
 </script>
 <style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

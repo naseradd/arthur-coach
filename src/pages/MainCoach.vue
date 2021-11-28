@@ -3,7 +3,7 @@
     <div class="page-header page-header-small">
       <parallax
         class="page-header-image"
-        style="background-image: url('img/gym_baw.jpg')"
+        :style="background_img"
       >
       </parallax>
       <div class="content-center">
@@ -98,13 +98,12 @@
         type="primary" 
         tabContentClasses="tab-subcategories"
         square centered class="row"
+        :value="tab_title[1]"
+        @clickOnTab="clickOnTab"
+
       >
-        <tab-pane>
-        <span slot="label">
-          {{tab_title[0]}}
-        </span>
-          <div class="container">
-            <h2 class="title">{{temoign_Title}}</h2>
+        <tab-pane :label="tab_title[0]">
+            <!-- <h2 class="title">{{temoign_Title}}</h2> -->
             <div class="container-people-card">
               <people-card
               :name="temoignNameList[0]"
@@ -115,15 +114,11 @@
               :name="temoignNameList[1]"
               :img="temoignImgList[1]"
               :description="temoignTextList[1]"/>
-            </div>
           </div>
         </tab-pane>
-        <tab-pane>
-        <span slot="label">
-          {{tab_title[1]}}
-        </span>
+        <tab-pane :label="tab_title[1]">
           <div class="container">
-            <h2 class="title">{{plan_training}}</h2>
+            <!-- <h2 class="title">{{plan_training}}</h2> -->
             <div class="container-people-card">
               <data-card
               :title="plan_training_dataInfo[0].title"
@@ -147,12 +142,9 @@
             </div>
           </div>
         </tab-pane>
-        <tab-pane>
-        <span slot="label">
-          {{tab_title[2]}}
-        </span>
+        <tab-pane :label="tab_title[2]">
           <div class="container">
-            <h2 class="title">{{plan_training}}</h2>
+            <!-- <h2 class="title">{{plan_training}}</h2> -->
             <div class="container-people-card">
               <data-card
               :title="plan_training_dataInfo[0].title"
@@ -261,9 +253,9 @@ export default {
       mainTitle: "Bonjour, je m'appelle Arthur",
       mainDescription:
       '" Je suis coach et massothérapeute à Montréal. Je travaille avec une grande variété des gens qui veulent devenir plus forts, plus athlétiques et plus sains. Pour chaque client, je crée un plan personnalisé avec soin et avec attention à la profile de la personne. "',
-      temoign_Title: "Témoignages",
-      plan_training: "Plans entraînement",
-      plan_massage: "Plans massage",
+      temoign_Title: "Livre d'or",
+      plan_training: "Forfaits Entraînement",
+      plan_massage: "Forfaits Massage",
       rendezVous: "Prendre rendez vous",
       questionsAndInterest: "Avez-vous des questions ? Voudriez-vous commencer tout de suite ?",
       showTemplate: false,
@@ -274,8 +266,14 @@ export default {
       tab_title: [],
       tab_nav_link: [],
       tab_panes: [],
+      background_gym_img: 'background-image: url("img/gym_baw.jpg")',
+      background_zen_img: 'background-image: url("img/zen_background.jpg")',
+      background_img: "",
 
     };
+  },
+  created(){
+    this.background_img = this.background_gym_img;
   },
   beforeMount(){
     //Nathan hardcode
@@ -297,6 +295,13 @@ export default {
   },
 
   methods:{
+    clickOnTab(index){
+      if(index == 2){
+        this.background_img = this.background_zen_img
+      } else {
+        this.background_img = this.background_gym_img
+      }
+    },
     generateFakeDataTraining(){
       let rowData = {
         title:"Gym Arthur",
@@ -327,14 +332,20 @@ export default {
 }
 .container-people-card{
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.nav-tabs{
+.nav-tabs li{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  margin: 15px;
+}
+.row{
+  display: flex !important;
+  flex-direction: column !important; 
 }
 </style>
