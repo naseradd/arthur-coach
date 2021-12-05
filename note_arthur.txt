@@ -1,3 +1,5 @@
+Phase 1 : 
+
 
 Photo arthur en haut centré
 titre a retirer
@@ -13,3 +15,30 @@ Plan massage -  backgorund scene dynamique
 
 
 bouton contact en dessous
+
+phase 2 : 
+
+Nouvelle page pour forfait muscu et massage.
+Nouvelle livre d'or avec tous les commentaires.
+
+onglet forfait : forfait massage et forfait entrainements sur une meme page. ( cote gauche et cote droit sur pc et jaut et bas pour smartphone)
+background mix muscu massage sur les tarifs ou sur l'onglet forfait ( muscu a gauche, amssage a drite)
+
+
+logo top nav bar logo noir sur fond blanc.
+navbar mettre la police en bold et un poil plus gros ( plus visible).
+fond du navbar dynamique ( muscu ou massage ou mix muscu massage).
+
+move button tab pane et les ajouter dans la nav bar
+
+home page photo principal a gauche texte a droite
+deuxieme photo a dorite texte a gauche.
+
+dialog page form 
+nom complet
+message body textenumber phone
+envoie un mail direct a arthur.
+
+forfait muscu -> nom du gym qui contient le lien gmaps du gym.
+
+forfaitmuscu et massage -> carrousel pour toutes els cartes avec fleches gauche et droite (transition de balayage).

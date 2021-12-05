@@ -133,7 +133,6 @@ export default {
   methods: {
     clickOnTab(){
       this.tabs.forEach((tab, index) => {
-        console.log(tab.label);
         if(tab.active){
           this.$emit('clickOnTab', index);
         }
