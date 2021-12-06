@@ -10,7 +10,8 @@
         </div>
       </div>
     </div>
-    <div v-show="isHomePage" class="section">
+    <transition name="fade" mode="out-in">
+    <div v-if="isHomePage" key="1" class="section">
       <h3 class="title" style="text-align: center;">{{titleHomePage}}</h3>
       <div class="profile">
         <img src="img/arthur.jpg" alt="Thumbnail Image" class="rounded img-fluid img-raised" />
@@ -21,7 +22,6 @@
           </h5>
         </div>
       </div>
-
       <div class="profile">
         <div class="container">
           <!-- <h2 class="title">{{mainTitle}}</h2> -->
@@ -32,14 +32,14 @@
         <img src="img/arthur.jpg" alt="Thumbnail Image" class="rounded img-fluid img-raised" />
       </div>
     </div>
-    <div v-show="isTemoignPage" class="section">
+    <div v-else-if="isTemoignPage" key="2" class="section">
       <h3 class="title" style="text-align: center;">{{temoign_Title}}</h3>
       <div class="container-people-card">
         <people-card :name="temoignNameList[0]" :img="temoignImgList[0]" :description="temoignTextList[0]" />
         <people-card :name="temoignNameList[1]" :img="temoignImgList[1]" :description="temoignTextList[1]" />
       </div>
     </div>
-    <div v-show="isGymMassagePage" class="section">
+    <div v-else-if="isGymMassagePage" key="3" class="section">
       <div class="forfait">
       <div>
         <h3 class="title" style="text-align: center;">{{plan_training}}</h3>          
@@ -51,6 +51,7 @@
       </div>
       </div>
     </div>
+    </transition>
     <div class="section section-contact-us text-center">
       <div class="container">
         <!-- <h2 class="title">{{questionsAndInterest}}</h2> -->
@@ -217,6 +218,7 @@
   .forfait {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
     margin: 15px;
@@ -225,5 +227,12 @@
   .row {
     display: flex !important;
     flex-direction: column !important;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
   }
 </style>
