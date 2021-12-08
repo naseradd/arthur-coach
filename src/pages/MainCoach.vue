@@ -2,7 +2,7 @@
   <div>
     <div class="page-header page-header-small">
       <parallax class="page-header-image" :style="background_img">
-      </parallax>
+        </parallax>
       <div class="content-center">
         <div class="container">
           <div class="text-center">
@@ -11,7 +11,13 @@
       </div>
     </div>
     <transition name="fade" mode="out-in">
-    <div v-if="isHomePage" key="1" class="section">
+    <div 
+      v-if="isHomePage" 
+      key="1" 
+      class="section" 
+      style="background-image: url('img/logo_AR_sek_train_bg.png'); background-size: cover;
+        background-position: center;"
+    >
       <h3 class="title" style="text-align: center;">{{titleHomePage}}</h3>
       <div class="profile">
         <img src="img/arthur.jpg" alt="Thumbnail Image" class="rounded img-fluid img-raised" />
@@ -39,7 +45,8 @@
         <people-card :name="temoignNameList[1]" :img="temoignImgList[1]" :description="temoignTextList[1]" />
       </div>
     </div>
-    <div v-else-if="isGymMassagePage" key="3" class="section">
+    <div v-else-if="isGymMassagePage" key="3" class="section" style="background-image: url('img/mix_background.png'); background-size: cover;
+        background-position: center;">
       <div class="forfait">
       <div>
         <h3 class="title" style="text-align: center;">{{plan_training}}</h3>          
