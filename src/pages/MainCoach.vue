@@ -75,8 +75,11 @@
                 placeholder="Type a message..."></textarea>
             </div>
             <div class="send-button">
-              <n-button :type="theme" round block size="lg">{{rendezVous}}</n-button>
+              <n-button :type="theme" round block size="lg" @click="showModal = true">{{rendezVous}}</n-button>
             </div>
+            <transition name="modal">
+              <dialog-contact v-if="showModal" @close="showModal = false"/>               
+            </transition>
           </div>
         </div>
       </div>
@@ -90,6 +93,7 @@
   } from '@/components';
   import PeopleCard from './components/PeopleCard.vue'
   import DataCard from './components/DataCard.vue';
+  import DialogContact from './components/DialogContact.vue';
   export default {
     name: 'MainCoach',
     bodyClass: 'main-coach',
@@ -98,6 +102,7 @@
       [FormGroupInput.name]: FormGroupInput,
       PeopleCard,
       DataCard,
+      DialogContact,
     },
     props: {
       theme: String,
@@ -126,7 +131,7 @@
         temoign_Title: "Livre d'or",
         plan_training: "Forfaits Entraînement",
         plan_massage: "Forfaits Massage",
-        rendezVous: "Prendre rendez vous",
+        rendezVous: "Contactez moi",
         questionsAndInterest: "Avez-vous des questions ? Voudriez-vous commencer tout de suite ?",
         showTemplate: false,
         temoignTextList: [],
@@ -140,6 +145,7 @@
         background_zen_img: 'background-image: url("img/zen_background.jpg")',
         background_mix_img: 'background-image: url("img/mix_background.jpg")',
         background_img: "",
+        showModal: false,
 
       };
     },
@@ -197,6 +203,9 @@
         this.plan_training_dataInfo.push(rowData);
         this.plan_training_dataInfo.push(rowData2);
       }
+    },
+    showDialog(){
+      this.showDialogContact = true
     },
   };
 </script>
