@@ -47,8 +47,6 @@
             </div>
           </div>
         </div>
-
-
           <div class="modal-footer">
             <slot name="footer">
               <n-button 
@@ -65,6 +63,8 @@
 </template>
 <script>
 import { Button, FormGroupInput } from '@/components';
+import emailjs from 'emailjs-com';
+
   export default {
     name: 'DialogContact',
     bodyClass: 'dialog-contact',
@@ -91,18 +91,42 @@ import { Button, FormGroupInput } from '@/components';
         return { transform: 'rotate(' + 0.5 + '0.5)'}
       },
     },
+    mounted(){
+      emailjs.init("user_8zI3HanvKMoJdCRrNr11Q");
+    },
     methods:{
       sendMessage(){
-        this.isLoading = true;
-        setTimeout(() => {
-          this.isSuccessfull = true; 
-          setTimeout(() => {  
-            this.close();
-            this.isLoading = false;
-            this.isSuccessfull = false;
-          }, 1000);
-        }, 2000);
-        // do something
+        let that = this;
+        that.isLoading = true;
+        try{
+        emailjs.send(
+          "service_uvnwc3e",
+          "template_sgshpsf",
+          {
+            email: that.form.email,
+            from_name: that.form.firstName,
+            message: that.form.message
+          })
+          .then(function(response) {
+            //console.log('SUCCESS!', response.status, response.text);
+            that.isSuccessfull = true;
+            setTimeout(() => {  
+              that.close();
+              that.isLoading = false;
+              that.isSuccessfull = false;
+            }, 1500);    
+          }, function(error) {
+            console.log('FAILED...', error);
+            that.close();
+            that.isLoading = false;
+            that.isSuccessfull = false;
+          });
+        }
+        catch {
+          that.close();
+          that.isLoading = false;
+          that.isSuccessfull = false;
+        }
       },
       close(){
         this.form.firstName = '',
