@@ -72,70 +72,69 @@ import emailjs from 'emailjs-com';
     [Button.name]: Button,
     [FormGroupInput.name]: FormGroupInput
   },
-    data() {
-      return {
-        form: {
-          firstName: '',
-          email: '',
-          message: ''
-        },
-        isLoading: false,
-        isSuccessfull: false,
-        dialogTitle:"Envoyez moi un message privée",
-        dialogDescription: "Je vous répondrai sur votre email dès que possible. Merci d'avance et bonne journée !",
-        dialogSend: "Envoyer le message"
-      };
-    },
-    computed:{
-      style () {
-        return { transform: 'rotate(' + 0.5 + '0.5)'}
+  data() {
+    return {
+      form: {
+        firstName: '',
+        email: '',
+        message: ''
       },
+      isLoading: false,
+      isSuccessfull: false,
+      dialogTitle:"Envoyez moi un message privée",
+      dialogDescription: "Je vous répondrai sur votre email dès que possible. Merci d'avance et bonne journée !",
+      dialogSend: "Envoyer le message"
+    };
+  },
+  computed:{
+    style () {
+      return { transform: 'rotate(' + 0.5 + '0.5)'}
     },
-    mounted(){
-      emailjs.init("user_8zI3HanvKMoJdCRrNr11Q");
-    },
-    methods:{
-      sendMessage(){
-        let that = this;
-        that.isLoading = true;
-        try{
-        emailjs.send(
-          "service_uvnwc3e",
-          "template_sgshpsf",
-          {
-            email: that.form.email,
-            from_name: that.form.firstName,
-            message: that.form.message
-          })
-          .then(function(response) {
-            //console.log('SUCCESS!', response.status, response.text);
-            that.isSuccessfull = true;
-            setTimeout(() => {  
-              that.close();
-              that.isLoading = false;
-              that.isSuccessfull = false;
-            }, 1500);    
-          }, function(error) {
-            console.log('FAILED...', error);
+  },
+  mounted(){
+    emailjs.init("user_8zI3HanvKMoJdCRrNr11Q");
+  },
+  methods:{
+    sendMessage(){
+      let that = this;
+      that.isLoading = true;
+      try{
+      emailjs.send(
+        "service_uvnwc3e",
+        "template_sgshpsf",
+        {
+          email: that.form.email,
+          from_name: that.form.firstName,
+          message: that.form.message
+        })
+        .then(function(response) {
+          //console.log('SUCCESS!', response.status, response.text);
+          that.isSuccessfull = true;
+          setTimeout(() => {  
             that.close();
             that.isLoading = false;
             that.isSuccessfull = false;
-          });
-        }
-        catch {
+          }, 1500);    
+        }, function(error) {
           that.close();
           that.isLoading = false;
           that.isSuccessfull = false;
-        }
-      },
-      close(){
-        this.form.firstName = '',
-        this.form.email = '',
-        this.form.message = '',
-        this.$emit('close');
+        });
       }
+      catch {
+        that.close();
+        that.isLoading = false;
+        that.isSuccessfull = false;
+      }
+    },
+    close(){
+      this.form.firstName = '',
+      this.form.email = '',
+      this.form.message = '',
+      this.$emit('close');
     }
-  };
+  }
+};
 </script>
 <style>
 .modal-mask {
@@ -156,7 +155,7 @@ import emailjs from 'emailjs-com';
 }
 
 .modal-container {
-  width: 500px;
+  width: 65%;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;

@@ -3,11 +3,17 @@
       <img src="img/left-arrow.svg" class="img-arrow" @click="changeCard(1)"/>
       <transition-group :name="slideIsLeft ? 'fade-in-left' : 'fade-in-right'" mode="out-in">
       <div class="peoplecard back" v-for="(item,index) in dataInfo" :key="index+1" v-show="index == indexToShow">
-        <card style="width: 20rem;">
+        <card style="width: 21rem;">
           <div v-show="index == indexToShow">
             <h4 class="card-title text-center">{{item.title}}</h4>
             <h5 class="card-title text-center"><b>{{item.price}}</b>{{item.unite}}</h5>
             <hr style="height:2px; width:60%; border-width:0; color:red; background-color:black">
+            
+            <a  v-if='item.description != ""' class="card-text" :href="item.link" target="_blank">  
+              <i class="now-ui-icons location_pin"/>
+              {{item.description}}
+            </a>
+            <hr v-if='item.description != ""' style="height:2px; width:60%; border-width:0; color:red; background-color:black">
             <ul class="text-left">
               <li v-for="text in item.pro" :key="text">
                 <p class="card-text">{{text}}</p>
@@ -61,12 +67,16 @@
   };
 </script>
 <style>
+.card a{
+  font-size: small !important;
+}
+
 .card-section{
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  height: 500px;
+  height: 900px;
 }
 
 .img-arrow{

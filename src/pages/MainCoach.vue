@@ -19,49 +19,63 @@
         background-position: center;"
     >
       <h3 class="title" style="text-align: center;">{{titleHomePage}}</h3>
-      <div class="profile">
+      <div class="profile" :style="isMobileDevice? flexColumnDisplay:flexRowDisplay">
         <img src="img/arthur.jpg" alt="Thumbnail Image" class="rounded img-fluid img-raised" />
         <div class="container">
-          <!-- <h2 class="title">{{mainTitle}}</h2> -->
+          <h4 class="title">{{mainTitleDescription}}</h4>
           <h5 class="">
             {{mainDescription}}
           </h5>
         </div>
       </div>
-      <div class="profile">
+      <div class="profile" :style="isMobileDevice? flexColumnDisplay:flexRowDisplay">
         <div class="container">
-          <!-- <h2 class="title">{{mainTitle}}</h2> -->
+          <h4 class="title">{{mainTitle2Description}}</h4>
           <h5 class="">
-            {{mainDescription}}
+            {{mainDescription2}}
           </h5>
         </div>
         <img src="img/arthur.jpg" alt="Thumbnail Image" class="rounded img-fluid img-raised" />
       </div>
+      <div class="profile" :style="isMobileDevice? flexColumnDisplay:flexRowDisplay">
+        <div class="container">
+          <h5 class="">
+          <br/>{{endMainDescription}}
+          <br/><br/>{{titleHomePage}}
+    </h5>
+        </div>
+      </div>
+      
     </div>
+    
     <div v-else-if="isTemoignPage" key="2" class="section">
       <h3 class="title" style="text-align: center;">{{temoign_Title}}</h3>
       <div class="container-people-card">
-        <people-card :name="temoignNameList[0]" :img="temoignImgList[0]" :description="temoignTextList[0]" />
-        <people-card :name="temoignNameList[1]" :img="temoignImgList[1]" :description="temoignTextList[1]" />
+        <people-card 
+          v-for="(item,index) in temoignList" 
+          :key="index" 
+          :name="item.name" 
+          :img="item.img" 
+          :description="item.text" 
+        />
       </div>
     </div>
     <div v-else-if="isGymMassagePage" key="3" class="section" style="background-image: url('img/mix_background.png'); background-size: cover;
         background-position: center;">
       <div class="forfait">
-      <div>
+      <div class="forfait-panel">
         <h3 class="title" style="text-align: center;">{{plan_training}}</h3>          
           <data-card :dataInfo="plan_training_dataInfo" />
       </div>
-      <div>
+      <div class="forfait-panel">
         <h3 class="title" style="text-align: center;">{{plan_massage}}</h3>
           <data-card :dataInfo="plan_training_dataInfo" />
       </div>
       </div>
     </div>
     </transition>
-    <div class="section section-contact-us text-center">
+    <div class="section text-center">
       <div class="container">
-        <!-- <h2 class="title">{{questionsAndInterest}}</h2> -->
         <div class="row">
           <div class="col-lg-6 text-center ml-auto mr-auto col-md-8">
             <fg-input v-if="showTemplate" class="input-lg" placeholder="First Name..." v-model="form.firstName"
@@ -94,6 +108,7 @@
   import PeopleCard from './components/PeopleCard.vue'
   import DataCard from './components/DataCard.vue';
   import DialogContact from './components/DialogContact.vue';
+  import getData from '../assets/websiteData';
   export default {
     name: 'MainCoach',
     bodyClass: 'main-coach',
@@ -126,26 +141,27 @@
           email: '',
           message: '',
         },
-        titleHomePage: "Arthur Rousseau",
-        mainDescription: '" Je suis coach et massothérapeute à Montréal. Je travaille avec une grande variété des gens qui veulent devenir plus forts, plus athlétiques et plus sains. Pour chaque client, je crée un plan personnalisé avec soin et avec attention à la profile de la personne. "',
-        temoign_Title: "Livre d'or",
-        plan_training: "Forfaits Entraînement",
-        plan_massage: "Forfaits Massage",
-        rendezVous: "Contactez moi",
-        questionsAndInterest: "Avez-vous des questions ? Voudriez-vous commencer tout de suite ?",
+        titleHomePage: getData("titleHomePage"),
+        mainDescription: getData("mainDescription"),
+        mainTitleDescription: getData("mainTitleDescription"),
+        mainDescription2: getData("mainDescription2"),
+        mainTitle2Description: getData("mainTitle2Description"),
+        endMainDescription: getData("endMainDescription"),
+        temoign_Title: getData("temoign_Title"),
+        plan_training: getData("plan_training"),
+        plan_massage: getData("plan_massage"),
+        rendezVous: getData("rendezVous"),
+        questionsAndInterest: getData("questionsAndInterest"),
         showTemplate: false,
-        temoignTextList: [],
-        temoignImgList: [],
-        temoignNameList: [],
+        temoignList: [],
         plan_training_dataInfo: [],
-        tab_title: [],
-        tab_nav_link: [],
-        tab_panes: [],
         background_gym_img: 'background-image: url("img/gym_baw.jpg")',
         background_zen_img: 'background-image: url("img/zen_background.jpg")',
         background_mix_img: 'background-image: url("img/mix_background.jpg")',
-        background_img: "",
         showModal: false,
+        isMobileDevice: false,
+        flexRowDisplay: "display: flex;flex-direction: row;align-items: center;justify-content: space-around;text-align: center;margin-bottom: 40px;",
+        flexColumnDisplay: "display: flex;flex-direction: column;align-items: center;justify-content: space-around;text-align: center;margin-bottom: 40px;",
 
       };
     },
@@ -154,24 +170,23 @@
     },
     beforeMount() {
       //Nathan hardcode
-      this.temoignTextList.push("« Arthur est le meilleur coach. J'ai ajouté 25 livres de muscle cette année. »");
-      this.temoignImgList.push("background-image: url('img/natan_temoign.jpg')");
-      this.temoignNameList.push("Natan Weinberger, client de 1 ans.");
-
-      //Carole hardcode
-      this.temoignTextList.push("« Il m'a beaucoup aidé ! »");
-      this.temoignImgList.push("background-image: url('img/carol_temoign.jpg')");
-      this.temoignNameList.push("Carol Zhang, client de 1 ans.");
-
-      this.tab_title.push(this.temoign_Title);
-      this.tab_title.push(this.plan_training);
-      this.tab_title.push(this.plan_massage);
+      this.temoignList = getData("temoign");
+      this.plan_training_dataInfo = getData("trainingData");
 
 
-      this.generateFakeDataTraining();
+      // this.generateFakeDataTraining();
     },
-
+    mounted(){
+      this.isMobileDevice = this.isMobile();
+    },
     methods: {
+      isMobile() {
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          return true
+        } else {
+          return false
+        }
+      },
       clickOnTab(index) {
         if (index == 2) {
           this.background_img = this.background_zen_img
@@ -210,13 +225,6 @@
   };
 </script>
 <style>
-  .profile {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-  }
 
   .profile img {
     width: 300px;
