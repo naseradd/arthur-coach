@@ -35,7 +35,7 @@
             {{mainDescription2}}
           </h5>
         </div>
-        <img src="img/arthur.jpg" alt="Thumbnail Image" class="rounded img-fluid img-raised" />
+        <img src="img/zen.jpg" alt="Thumbnail Image" class="rounded img-fluid img-raised" style='width: 450px;' />
       </div>
       <div class="profile" :style="isMobileDevice? flexColumnDisplay:flexRowDisplay">
         <div class="container">
@@ -108,7 +108,7 @@
   import PeopleCard from './components/PeopleCard.vue'
   import DataCard from './components/DataCard.vue';
   import DialogContact from './components/DialogContact.vue';
-  import getData from '../assets/websiteData';
+  import {getData, getImgData} from '../assets/websiteData';
   export default {
     name: 'MainCoach',
     bodyClass: 'main-coach',
@@ -155,9 +155,9 @@
         showTemplate: false,
         temoignList: [],
         plan_training_dataInfo: [],
-        background_gym_img: 'background-image: url("img/gym_baw.jpg")',
-        background_zen_img: 'background-image: url("img/zen_background.jpg")',
-        background_mix_img: 'background-image: url("img/mix_background.jpg")',
+        background_gym_img: getImgData("background_gym_img"),
+        background_zen_img: getImgData("background_zen_img"),
+        background_mix_img: getImgData("background_mix_img"),
         showModal: false,
         isMobileDevice: false,
         flexRowDisplay: "display: flex;flex-direction: row;align-items: center;justify-content: space-around;text-align: center;margin-bottom: 40px;",

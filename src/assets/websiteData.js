@@ -1,9 +1,9 @@
 const jsonData = {
     titleHomePage: "Arthur Rousseau",
-    mainTitleDescription: `Présentation Coaching`,
+    mainTitleDescription: `Coaching`,
     mainDescription: `Bonjour, je m’appelle Arthur, D’origine française et âgé de 29 ans. J’ai découvert Montréal, cette ville remplis d’esprit sportif. Je suis venu ici avec l’envie d’apporter une touche nord-américaine à mon coaching. Ce mélange multiculturel m’aide dans l’accompagnement et l’écoute de mes sportifs. 
     Le coaching que je pratique depuis maintenant 4 ans, signe l’empreinte de mon passé en tant que pompier de Paris. Formé par l’un des précurseurs du fitness à Paris, j’ai pu faire mes armes dans plusieurs centres d’entrainement. J’entraine désormais avec l’identité d’un coaching positif et holistique s’appuyant sur de bonnes bases théoriques. L’expérience du terrain me permet de vous donner des conseils et des exercices adaptés à vos capacités.`,
-    mainTitle2Description: `Présentation Massothérapie`,
+    mainTitle2Description: `Massothérapie`,
     mainDescription2: `Formé à Montréal en 2021 à l’Académie des massages scientifiques, je détiens une formation de 400 heures. Mon massage se base sur la relaxation et récupération musculaire. J’aime combiner le massage et le coaching car ce sont deux métiers qui se complètent.`,
     endMainDescription: `Impatient de vous aider, sportivement`,
     temoign_Title: "Livre d'or",
@@ -86,7 +86,17 @@ const jsonData = {
     ]
 }
 
+const imageData = {
+    background_gym_img: 'background-image: url("img/gym_baw.jpg")',
+    background_zen_img: 'background-image: url("img/zen.jpg")',
+    background_mix_img: 'background-image: url("img/mix_background.jpg")',
+}
 
-export default function getData(key) {
+
+export function getData(key) {
     return jsonData[key];
+};
+
+export function getImgData(key) {
+    return imageData[key];
 }
