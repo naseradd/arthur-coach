@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
-# abort on errors
-set -e
+# #!/usr/bin/env sh
+# # abort on errors
+# set -e
 
 git add -A
 git commit -m 'code push'

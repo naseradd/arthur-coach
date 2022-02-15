@@ -1,11 +1,16 @@
 <template>
-  <navbar position="fixed" :type="theme" :transparent="transparent" :color-on-scroll="colorOnScroll"
+  <navbar position="fixed" :type="theme" :transparent="transparent" :color-on-scroll="colorOnScroll" 
     menu-classes="ml-auto">
-    <template>
+    <div class="menu-navbar">
       <img src="img/logo_AR_sek_train_white.png" alt="Thumbnail Image" class="rounded logo" />
-    </template>
-    <template slot="navbar-menu">
-      <li class="nav-item"><b>
+    </div>
+    <div class="menu-navbar-button">
+      <button type="button" class="btn btn-neutral btn-round btn-sm" @click="$emit('GoToHomePage')"><b>{{header_about_us}}</b></button>
+      <button type="button" class="btn btn-neutral btn-round btn-sm" @click="$emit('GoToGymMassagePage')"><b>{{header_tarification}}</b></button>
+      <button type="button" class="btn btn-neutral btn-round btn-sm" @click="$emit('GoToTemoignPage')"><b>{{header_temoin}}</b></button>
+    </div>
+    
+      <!-- <li class="nav-item"><b>
         <a class="nav-link" target="_blank" @click="$emit('GoToHomePage')">
           <p>{{header_about_us}}</p>
         </a>
@@ -22,14 +27,7 @@
           <p>{{header_temoin}}</p>
         </a>
         </b>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" rel="tooltip" title="Follow me on Instagram" data-placement="bottom" href="https://www.instagram.com/sekk.fitness/?hl=fr" target="_blank" >
-          <i class="fab fa-instagram"></i>
-          <p class="d-lg-none d-xl-none">Instagram</p>
-        </a>
-      </li>
-    </template>
+      </li> -->
   </navbar>
 </template>
 
@@ -42,6 +40,8 @@
   import {
     Popover
   } from 'element-ui';
+  import {getImgData} from '../assets/websiteData';
+
   export default {
     name: 'main-navbar',
     props: {
@@ -67,5 +67,9 @@
 <style scoped>
   .logo {
     width:70px;
+  }
+  .btn-sm{
+    font-size: 10px;
+    margin-left: 5px;
   }
 </style>

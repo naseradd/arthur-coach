@@ -1,14 +1,6 @@
 <template>
   <div>
-    <div class="page-header page-header-small">
-      <parallax class="page-header-image" :style="background_img">
-        </parallax>
-      <div class="content-center">
-        <div class="container">
-          <div class="text-center">
-          </div>
-        </div>
-      </div>
+    <div class="page-header-small">
     </div>
     <transition name="fade" mode="out-in">
     <div 
@@ -94,6 +86,9 @@
             <transition name="modal">
               <dialog-contact v-if="showModal" @close="showModal = false"/>               
             </transition>
+            <a class="nav-link" rel="tooltip" title="Follow me on Instagram" data-placement="bottom" href="https://www.instagram.com/sekk.fitness/?hl=fr" target="_blank" >
+              <i class="fab fa-instagram fa-4x"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -258,5 +253,8 @@
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+  }
+  .page-header-small{
+    margin-bottom: 50px;
   }
 </style>
