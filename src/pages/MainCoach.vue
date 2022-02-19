@@ -32,9 +32,9 @@
       <div class="profile" :style="isMobileDevice? flexColumnDisplay:flexRowDisplay">
         <div class="container">
           <h5 class="">
-          <br/>{{endMainDescription}}
-          <br/><br/>{{titleHomePage}}
-    </h5>
+            <br/>{{endMainDescription}}
+            <br/><br/>{{titleHomePage}}
+          </h5>
         </div>
       </div>
       
@@ -49,19 +49,20 @@
           :name="item.name" 
           :img="item.img" 
           :description="item.text" 
+          class="people-card"
         />
       </div>
     </div>
-    <div v-else-if="isGymMassagePage" key="3" class="section" style="background-image: url('img/mix_background.png'); background-size: cover;
-        background-position: center;">
+    <div v-else-if="isGymMassagePage" key="3" class="section" :style="!isMobileDevice? `background-image: url('img/mix_background.png'); background-size: cover;
+        background-position: center;` : ``">
       <div class="forfait">
       <div class="forfait-panel">
-        <h3 class="title" style="text-align: center;">{{plan_training}}</h3>          
-          <data-card :dataInfo="plan_training_dataInfo" />
+        <h3 class="title text-center">{{plan_training}}</h3>          
+          <data-card :dataInfo="plan_training_dataInfo" :isMobileDevice="isMobileDevice" />
       </div>
       <div class="forfait-panel">
-        <h3 class="title" style="text-align: center;">{{plan_massage}}</h3>
-          <data-card :dataInfo="plan_training_dataInfo" />
+        <h3 class="title text-center">{{plan_massage}}</h3>
+          <data-card :dataInfo="plan_training_dataInfo" :isMobileDevice="isMobileDevice" />
       </div>
       </div>
     </div>
@@ -231,7 +232,10 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+  }
+  .people-card{
+    margin: 50px;
   }
 
   .forfait {

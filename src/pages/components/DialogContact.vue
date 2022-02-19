@@ -23,14 +23,14 @@
           <div class="col-lg-12 text-center ml-auto mr-auto col-md-8">
             <fg-input
               class="input-lg"
-              placeholder="First Name..."
+              placeholder="Nom complet ..."
               v-model="form.firstName"
               addon-left-icon="now-ui-icons users_circle-08"
             >
             </fg-input>
             <fg-input
               class="input-lg"
-              placeholder="Email Here..."
+              placeholder="Email ici..."
               v-model="form.email"
               addon-left-icon="now-ui-icons ui-1_email-85"
             >
@@ -42,7 +42,7 @@
                 rows="4"
                 cols="80"
                 v-model="form.message"
-                placeholder="Type a message..."
+                placeholder="Ecrivez votre message ..."
               ></textarea>
             </div>
           </div>

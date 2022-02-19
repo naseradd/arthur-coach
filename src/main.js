@@ -20,9 +20,11 @@ import App from './App.vue';
 import router from './router';
 import NowUiKit from './plugins/now-ui-kit';
 
+
 Vue.config.productionTip = false;
 
 Vue.use(NowUiKit);
+
 
 new Vue({
   router,

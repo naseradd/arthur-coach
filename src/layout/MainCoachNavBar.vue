@@ -5,9 +5,30 @@
       <img src="img/logo_AR_sek_train_white.png" alt="Thumbnail Image" class="rounded logo" />
     </div>
     <div class="menu-navbar-button">
-      <button type="button" class="btn btn-neutral btn-round btn-sm" @click="$emit('GoToHomePage')"><b>{{header_about_us}}</b></button>
-      <button type="button" class="btn btn-neutral btn-round btn-sm" @click="$emit('GoToGymMassagePage')"><b>{{header_tarification}}</b></button>
-      <button type="button" class="btn btn-neutral btn-round btn-sm" @click="$emit('GoToTemoignPage')"><b>{{header_temoin}}</b></button>
+      <button 
+        type="button" 
+        class= "bnt btn-round btn-sm"
+        v-bind:class="{'btn-secondary': activeBtn == 0}"
+        @click="setActiveAndEmit(0,'GoToHomePage')"
+      >
+        <b>{{header_about_us}}</b>
+      </button>
+      <button 
+        type="button" 
+        class= "bnt btn-round btn-sm"
+        v-bind:class="{'btn-secondary': activeBtn == 1}"
+        @click="setActiveAndEmit(1,'GoToGymMassagePage')"
+      >
+        <b>{{header_tarification}}</b>
+      </button>
+      <button 
+        type="button" 
+        class= "bnt btn-round btn-sm"
+        v-bind:class="{'btn-secondary': activeBtn == 2}"
+        @click="setActiveAndEmit(2,'GoToTemoignPage')"
+      >
+        <b>{{header_temoin}}</b>
+      </button>
     </div>
     
       <!-- <li class="nav-item"><b>
@@ -59,8 +80,20 @@
         header_about_us: "À propos",
         header_tarification: "Forfaits",
         header_temoin: "Témoignages",
+        activeBtn : 0
       };
     },
+    methods:{
+      setActiveAndEmit(index,emitstr){
+        // for (let index = 0; index < this.isActive.length; index++) {
+        //   this.isActive[index] = false;
+        // }
+        this.activeBtn = index;
+        console.log(this.isActive)
+        this.$emit(emitstr)
+      }
+
+    }
   };
 </script>
 

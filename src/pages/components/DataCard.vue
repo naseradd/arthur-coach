@@ -3,7 +3,7 @@
       <img src="img/left-arrow.svg" class="img-arrow" @click="changeCard(1)"/>
       <transition-group :name="slideIsLeft ? 'fade-in-left' : 'fade-in-right'" mode="out-in">
       <div class="peoplecard back" v-for="(item,index) in dataInfo" :key="index+1" v-show="index == indexToShow">
-        <card style="width: 21rem;">
+        <card style="width: 20rem;">
           <div v-show="index == indexToShow">
             <h4 class="card-title text-center">{{item.title}}</h4>
             <h5 class="card-title text-center"><b>{{item.price}}</b>{{item.unite}}</h5>
@@ -13,19 +13,21 @@
               <i class="now-ui-icons location_pin"/>
               {{item.description}}
             </a>
-            <hr v-if='item.description != ""' style="height:2px; width:60%; border-width:0; color:red; background-color:black">
+            <br/>
+            <br/>
+            <br/>
             <ul class="text-left">
               <li v-for="text in item.pro" :key="text">
-                <p class="card-text">{{text}}</p>
+                <h6 class="card-text mb-2 text-muted">{{text}}</h6>
               </li>
             </ul>
             <br />
-            <h5 class=""><b>{{item.bonus_description}}</b></h5>
+            <!-- <h5 class=""><b>{{item.bonus_description}}</b></h5>
             <ul>
               <li v-for="text in item.bonus" :key="text">
                 <p class="card-text">{{text}}</p>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </card>
       </div>
@@ -41,7 +43,7 @@
     components: {
       Card
     },
-    props: ['dataInfo'],
+    props: ['dataInfo','isMobileDevice'],
     data() {
       return {
         indexToShow: 0,
@@ -76,7 +78,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  height: 900px;
+  height: auto;
 }
 
 .img-arrow{

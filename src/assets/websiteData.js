@@ -13,17 +13,17 @@ const jsonData = {
     questionsAndInterest: "Avez-vous des questions ? Voudriez-vous commencer tout de suite ?",
     temoign: [{
             name: "Natan Weinberger, client de 1 ans.",
-            text: "« Arthur est le meilleur coach. J'ai ajouté 25 livres de muscle cette année. »",
-            img: "background-image: url('img/natan_temoign.jpg')"
+            text: "Arthur est le meilleur coach. J'ai ajouté 25 livres de muscle cette année.",
+            img: "img/natan_temoign.jpg"
         },
         {
             name: "Carol Zhang, client de 1 ans.",
-            text: "« Il m'a beaucoup aidé ! »",
-            img: "background-image: url('img/carol_temoign.jpg')"
+            text: "Il m'a beaucoup aidé !",
+            img: "img/carol_temoign.jpg"
         },
     ],
     trainingData: [{
-            title: "Forfait d’entrainement Focusgym",
+            title: "Forfait Focusgym",
             description: "2237 rue larivière, Montréal, QC H2K 1P6",
             link: "https://goo.gl/maps/N8ST5R4C9mfqnPRi9",
             unite: "/séance",
@@ -43,7 +43,7 @@ const jsonData = {
             ]
         },
         {
-            title: "Forfait d’entrainement Rgym",
+            title: "Forfait Rgym",
             description: "279 rue Sherbrooke O #315, Montréal, QC H2X 1Y2",
             link: "https://goo.gl/maps/2rzjsWzzEXo3KVJi7",
             unite: "/séance",
@@ -66,7 +66,7 @@ const jsonData = {
             ]
         },
         {
-            title: "Forfait plan d’entrainement",
+            title: "Forfait X",
             description: "",
             link: "",
             unite: "/séance",
