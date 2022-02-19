@@ -1,23 +1,22 @@
 <template>
 <div class="card-section">
       <img src="img/left-arrow.svg" class="img-arrow" @click="changeCard(1)"/>
-      <transition-group :name="slideIsLeft ? 'fade-in-left' : 'fade-in-right'" mode="out-in">
-      <div class="peoplecard back" v-for="(item,index) in dataInfo" :key="index+1" v-show="index == indexToShow">
+      <transition :name="slideIsLeft ? 'fade-in-left' : 'fade-in-right'" mode="out-in">
+      <div class="peoplecard back" :key="indexToShow">
         <card style="width: 20rem;">
-          <div v-show="index == indexToShow">
-            <h4 class="card-title text-center">{{item.title}}</h4>
-            <h5 class="card-title text-center"><b>{{item.price}}</b>{{item.unite}}</h5>
+            <h4 class="card-title text-center">{{dataInfo[indexToShow].title}}</h4>
+            <h5 class="card-title text-center"><b>{{dataInfo[indexToShow].price}}</b>{{dataInfo[indexToShow].unite}}</h5>
             <hr style="height:2px; width:60%; border-width:0; color:red; background-color:black">
             
-            <a  v-if='item.description != ""' class="card-text" :href="item.link" target="_blank">  
+            <a  v-if='dataInfo[indexToShow].description != ""' class="card-text" :href="dataInfo[indexToShow].link" target="_blank">  
               <i class="now-ui-icons location_pin"/>
-              {{item.description}}
+              {{dataInfo[indexToShow].description}}
             </a>
             <br/>
             <br/>
             <br/>
             <ul class="text-left">
-              <li v-for="text in item.pro" :key="text">
+              <li v-for="text in dataInfo[indexToShow].pro" :key="text">
                 <h6 class="card-text mb-2 text-muted">{{text}}</h6>
               </li>
             </ul>
@@ -28,10 +27,9 @@
                 <p class="card-text">{{text}}</p>
               </li>
             </ul> -->
-          </div>
         </card>
       </div>
-      </transition-group>
+      </transition>
       <img src="img/right-arrow.svg" class="img-arrow" @click="changeCard(-1)"/>
 </div>
 </template>
@@ -78,37 +76,52 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  height: auto;
+  height: 500px;
+}
+
+@media screen and (max-width: 500px){
+  .card-section{
+    width: 500px;
+    transform: scale(0.8);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: auto;
+  }
 }
 
 .img-arrow{
+  position: relative;
   height: 50px;
   margin: 20px;
+  z-index: 1;
 }
 .back{
-  z-index: -1;
+  position: relative;
+  z-index: 0;
+  transition: all .2s ease;
 }
 
-.fade-in-right-enter-active,
-.fade-in-left-enter-active {
-  transition: all 0.5s ease;
+.fade-in-right-enter-to,
+.fade-in-left-leave {
+  opacity: 1;
+  transform: translateX(0%);
 }
 
-.fade-in-right-leave-active,
-.fade-in-left-leave-active {
-  transition: all 0.5s ease;
+.fade-in-left-enter-to,
+.fade-in-right-leave {
+  opacity: 1;
 }
 
 .fade-in-right-enter,
-.fade-in-right-leave-to {
-  position: absolute; /* add for smooth transition between elements */
+.fade-in-left-leave-to {
   opacity: 0;
   transform: translateX(100%);
 }
 
 .fade-in-left-enter,
-.fade-in-left-leave-to {
-  position: absolute; /* add for smooth transition between elements */
+.fade-in-right-leave-to {
   opacity: 0;
   transform: translateX(-100%);
 }

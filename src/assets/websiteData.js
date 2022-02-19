@@ -90,6 +90,7 @@ const imageData = {
     background_gym_img: 'background-image: url("img/gym_baw.jpg")',
     background_zen_img: 'background-image: url("img/zen.jpg")',
     background_mix_img: 'background-image: url("img/mix_background.jpg")',
+    arthur_img: 'background-image: url("img/arthur_png.png")',
 }
 
 

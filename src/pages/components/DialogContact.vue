@@ -156,6 +156,18 @@ import emailjs from 'emailjs-com';
 
 .modal-container {
   width: 65%;
+  margin: auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+  .modal-container {
+  width: 100%;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -164,6 +176,8 @@ import emailjs from 'emailjs-com';
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
+}
+
 
 .modal-body {
   margin: 20px 0;

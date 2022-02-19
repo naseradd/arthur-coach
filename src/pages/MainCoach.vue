@@ -31,10 +31,10 @@
       </div>
       <div class="profile" :style="isMobileDevice? flexColumnDisplay:flexRowDisplay">
         <div class="container">
-          <h5 class="">
+          <h4 class="">
             <br/>{{endMainDescription}}
             <br/><br/>{{titleHomePage}}
-          </h5>
+          </h4>
         </div>
       </div>
       
@@ -53,8 +53,7 @@
         />
       </div>
     </div>
-    <div v-else-if="isGymMassagePage" key="3" class="section" :style="!isMobileDevice? `background-image: url('img/mix_background.png'); background-size: cover;
-        background-position: center;` : ``">
+    <div v-else-if="isGymMassagePage" key="3" class="section mix-background">
       <div class="forfait">
       <div class="forfait-panel">
         <h3 class="title text-center">{{plan_training}}</h3>          
@@ -68,7 +67,8 @@
     </div>
     </transition>
     <div class="section text-center">
-      <div class="container">
+      <img class="coachimg" src="../../public/img/arthur_png.png"/>
+      <div class="container contact-form">
         <div class="row">
           <div class="col-lg-6 text-center ml-auto mr-auto col-md-8">
             <fg-input v-if="showTemplate" class="input-lg" placeholder="First Name..." v-model="form.firstName"
@@ -81,6 +81,7 @@
               <textarea class="form-control" name="name" rows="4" cols="80" v-model="form.message"
                 placeholder="Type a message..."></textarea>
             </div>
+            
             <div class="send-button">
               <n-button :type="theme" round block size="lg" @click="showModal = true">{{rendezVous}}</n-button>
             </div>
@@ -221,7 +222,14 @@
   };
 </script>
 <style>
-
+  .profile {
+    max-width: 1200px;
+    margin: auto;
+    text-align: justify;
+  }
+  .profile h5 {
+    text-align: justify;
+  }
   .profile img {
     width: 300px;
     margin-left: 100px;
@@ -261,4 +269,18 @@
   .page-header-small{
     margin-bottom: 50px;
   }
+  .coachimg{
+    position: relative;
+    margin-bottom: -100px;
+    margin-top: -200px;
+  }
+
+@media screen and (min-width: 1030px){
+  .mix-background{
+    background-image: url('../../public/img/mix_background.png');
+    background-size: cover;
+    background-position: center bottom;
+  }
+}
+  
 </style>
